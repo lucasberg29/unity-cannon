@@ -828,10 +828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d185d072bc1016a4f9f0046efc760d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0.5
-  slider: {fileID: 2055709588}
-  choice: {fileID: 1933420604}
-  update: {fileID: 2055709589}
 --- !u!1 &1156648066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,7 +998,7 @@ GameObject:
   - component: {fileID: 1354872895}
   - component: {fileID: 1354872894}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BackgroundImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1532,10 +1528,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d185d072bc1016a4f9f0046efc760d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
-  slider: {fileID: 2055709588}
-  choice: {fileID: 1933420604}
-  update: {fileID: 2055709589}
 --- !u!114 &1698284543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1560,8 +1552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5891ef3f0f82544993233409d663402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankPosition: {fileID: 0}
-  score: {fileID: 0}
 --- !u!82 &1698284545
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1782,8 +1772,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ea94d6d7708ae45a846aa26f180bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefs: {fileID: 0}
-  currentDifficulty: 0.5
 --- !u!82 &1933420605
 AudioSource:
   m_ObjectHideFlags: 0

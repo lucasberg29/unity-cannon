@@ -10,8 +10,8 @@ public class IslandDIfficulty : MonoBehaviour
     
     void Start()
     {
-        level = GameObject.Find("LevelDifficulty").GetComponent<DifficultyChoice>();
-        difficulty = level.getDifficulty();
+        //level = GameObject.Find("LevelDifficulty").GetComponent<DifficultyChoice>();
+        //difficulty = level.getDifficulty();
     }
 
     // Update is called once per frame
