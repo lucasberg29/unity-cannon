@@ -5,8 +5,7 @@ using UnityEngine;
 public class Camerafollow : MonoBehaviour
 {
     public Transform tankPosition;
-
-    private static Vector2 Cameraposition;
+    private Vector2 cameraPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +16,7 @@ public class Camerafollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Cameraposition = new Vector2(tankPosition.position.x, tankPosition.position.y);
-        transform.position = new Vector3(Cameraposition.x, Cameraposition.y, -48);
+        cameraPosition = new Vector2(tankPosition.position.x, tankPosition.position.y);
+        transform.position = new Vector3(cameraPosition.x, cameraPosition.y, -48);
     }
 }

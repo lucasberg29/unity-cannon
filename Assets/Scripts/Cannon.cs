@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
+using static UnityEngine.GraphicsBuffer;
 
 public class Cannon : MonoBehaviour
 {
@@ -9,9 +12,10 @@ public class Cannon : MonoBehaviour
     float rightTimer = 0.0f;
 
     public GameObject ball;
-    public Transform spawnPoint;
-
     public AudioSource gunshot;
+
+    public Transform spawnPoint;
+    public Transform playerPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -23,17 +27,7 @@ public class Cannon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 mousePosition = Input.mousePosition;
-
-        mousePosition.z = 10.0f;
-
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-        Vector3 direction = mousePosition - transform.position;
-
-        float angle = 90.0f - (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
-
-        transform.rotation = Quaternion.AngleAxis(-angle, Vector3.forward);
+        UpdateCannonOrientation();
 
         timer += Time.deltaTime;
 
@@ -44,7 +38,6 @@ public class Cannon : MonoBehaviour
         {
             gunshot.Play();
             Instantiate(ball, spawnPoint.position, transform.rotation);
-            
             timer = 0.0f;
         }
 
@@ -57,5 +50,15 @@ public class Cannon : MonoBehaviour
             Instantiate(ball, spawnPoint.position, transform.rotation);
             rightTimer = 0.0f;
         }
+    }
+
+    private void UpdateCannonOrientation()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = transform.position.z;
+
+        Vector3 direction = mousePosition - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle - 90.0f);
     }
 }

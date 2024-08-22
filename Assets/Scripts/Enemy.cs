@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -34,7 +35,7 @@ public class Enemy : MonoBehaviour
         thiscollider = gameObject.GetComponent<Collider2D>();
         Physics2D.IgnoreCollision(GameObject.Find("MapCollider").GetComponent<Collider2D>(),thiscollider);
         
-        tank = GameObject.Find("Tank").GetComponent<Transform>();
+        tank = GameObject.Find("Player").GetComponent<Transform>();
         startingPosition = tank.position;
 
         hitsound = gameObject.GetComponent<AudioSource>();
@@ -47,6 +48,11 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //UpdateEnemyPosition();
+    }
+
+    private void UpdateEnemyPosition()
+    {
         transform.Translate(Vector2.up * 2.0f * Time.deltaTime);
 
         Vector3 dir = tank.position - transform.position;
@@ -57,19 +63,19 @@ public class Enemy : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collider)
     {
         hitsound.Play();
-        if (collider.gameObject.name == "Tank")
+        if (collider.gameObject.name == "Player")
         {
-            hitsound = GameObject.Find("Tank").GetComponent<AudioSource>();
+            hitsound = GameObject.Find("Player").GetComponent<AudioSource>();
 
             hitsound.Play();
 
-            tank.position = GameObject.Find("Tank").GetComponent<Tank>().getStartingPosition();
+            tank.position = GameObject.Find("Player").GetComponent<Tank>().getStartingPosition();
 
             Destroy(GameObject.Find("EnemiesParent(Clone)"));
 
             Instantiate(newEnemyGroup, new Vector3(0,0,0), Quaternion.identity);
 
-            tank.eulerAngles = new Vector3(0, 0, 0);
+            //tank.eulerAngles = new Vector3(0, 0, 0);
 
             transform.position = startingPosition;
             

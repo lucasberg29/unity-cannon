@@ -25,7 +25,7 @@ public class EnemyCreator : MonoBehaviour
         difficulty = 1.0f;
         level = GameObject.Find("Main Camera").GetComponent<IslandDIfficulty>();
 
-        difficulty = level.getDifficulty();
+        //difficulty = level.getDifficulty();
         timer = timer - 4.0f *difficulty;
         Instantiate(prefabParent, enemyPosition.position, enemyPosition.rotation); 
     }

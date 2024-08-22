@@ -9,14 +9,12 @@ public class Tank : MonoBehaviour
     public Vector2 startingPosition;
 
     public AudioSource losingSound;
-
     public RefreshMenu refresh;
 
-  
     void Start()
     {
         startingPosition = transform.position;
-        losingSound = gameObject.GetComponent<AudioSource>();
+        //losingSound = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
