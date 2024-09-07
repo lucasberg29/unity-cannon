@@ -27,20 +27,13 @@ public class EnemyCreator : MonoBehaviour
 
         //difficulty = level.getDifficulty();
         timer = timer - 4.0f *difficulty;
-        Instantiate(prefabParent, enemyPosition.position, enemyPosition.rotation); 
+        //Instantiate(prefabParent, enemyPosition.position, enemyPosition.rotation); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        respawnTime = respawnTime + Time.deltaTime;
 
-        if (respawnTime > timer)
-        {
-            createEnemy();
-            
-            respawnTime = respawnTime % timer;
-        }
     }
 
     public void createEnemy()

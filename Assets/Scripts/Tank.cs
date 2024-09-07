@@ -14,7 +14,6 @@ public class Tank : MonoBehaviour
     void Start()
     {
         startingPosition = transform.position;
-        //losingSound = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()

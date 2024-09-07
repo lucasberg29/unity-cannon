@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
 
     public Score score;
 
-
     public Collider2D thiscollider;
     public AudioSource hitsound;
 
@@ -33,13 +32,11 @@ public class Enemy : MonoBehaviour
     {
         refresh = null;
         thiscollider = gameObject.GetComponent<Collider2D>();
-        Physics2D.IgnoreCollision(GameObject.Find("MapCollider").GetComponent<Collider2D>(),thiscollider);
         
         tank = GameObject.Find("Player").GetComponent<Transform>();
         startingPosition = tank.position;
 
         hitsound = gameObject.GetComponent<AudioSource>();
-
 
         score = GameObject.Find("Text").GetComponent<Score>();
         refresh = GameObject.Find("Main Camera").GetComponent<RefreshMenu>();
@@ -48,7 +45,19 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //UpdateEnemyPosition();
+        PursuePlayer();
+    }
+
+    private void PursuePlayer()
+    {
+        Vector3 direction = tank.position - transform.position;
+        direction.z = tank.position.z;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0, 0, angle - 90.0f);
+
+        transform.Translate(Vector2.up * 2.0f * Time.deltaTime);
     }
 
     private void UpdateEnemyPosition()
@@ -63,29 +72,30 @@ public class Enemy : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collider)
     {
         hitsound.Play();
-        if (collider.gameObject.name == "Player")
+
+        string gameObjectTag = collider.tag;
+
+        switch(gameObjectTag)
         {
-            hitsound = GameObject.Find("Player").GetComponent<AudioSource>();
+            case "Player":
+                hitsound = GameObject.Find("Player").GetComponent<AudioSource>();
 
-            hitsound.Play();
+                hitsound.Play();
+                tank.position = GameObject.Find("Player").GetComponent<Tank>().getStartingPosition();
 
-            tank.position = GameObject.Find("Player").GetComponent<Tank>().getStartingPosition();
+                score.ResetScore();
+                break;
 
-            Destroy(GameObject.Find("EnemiesParent(Clone)"));
-
-            Instantiate(newEnemyGroup, new Vector3(0,0,0), Quaternion.identity);
-
-            //tank.eulerAngles = new Vector3(0, 0, 0);
-
-            transform.position = startingPosition;
-            
-            score.ResetScore();
+            case "CannonBall":
+                score.addToScore();
+                KillEnemy();
+                break;
         }
-        else 
-        {
-            score.addToScore();
-            Destroy(gameObject);
-        }
+    }
+
+    private void KillEnemy()
+    {
+        Destroy(gameObject);
     }
 
     public Vector2 getStartingPosition()
