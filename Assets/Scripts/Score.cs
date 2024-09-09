@@ -6,26 +6,26 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
+    public string scoreTextString;
+
     private static float score;
 
     public TextMeshProUGUI scoreText;
     // Start is called before the first frame update
     void Start()
     {
-        scoreText.text = "SCORE:";
+        scoreText.text = scoreTextString;
     }
 
     public void addToScore()
     {
         ++score;
-        scoreText.text = "SCORE: " + score;
+        scoreText.text = scoreTextString + " " + score;
     }
 
     public void ResetScore()
     {
         score = 0;
-        scoreText.text = "SCORE: " + score;
+        scoreText.text = scoreTextString + " " + score;
     }
-
-
 }
