@@ -337,7 +337,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 2710105865600657892, guid: 30ce4f1fe0b69fd4c989f74160139559,
     type: 3}
   playerCreationSpeed: 10
-  enemyCreationRadius: 50
+  enemyCreationRadius: 20
   playerCreationTimeLimit: 3
 --- !u!1 &506049995
 GameObject:

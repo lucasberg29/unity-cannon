@@ -93,6 +93,7 @@ MonoBehaviour:
   creator: {fileID: 0}
   newEnemyGroup: {fileID: 1927830015203379983, guid: 1e0d29113db4d58449d563ad5b24fa10,
     type: 3}
+  animator: {fileID: 5105896792635991406}
 --- !u!82 &8969371580586944623
 AudioSource:
   m_ObjectHideFlags: 0
@@ -200,6 +201,7 @@ GameObject:
   - component: {fileID: 3171532842914706716}
   - component: {fileID: 8355494470838961311}
   - component: {fileID: 5105896792635991406}
+  - component: {fileID: 7324034165509197080}
   m_Layer: 0
   m_Name: EnemySprite
   m_TagString: Untagged
@@ -296,3 +298,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7324034165509197080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3458333081245614539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 850073e04fba07f45996aa42481fa85a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
+    private bool isDead;
+
     public Transform tank;
     public static Vector2 startingPosition;
     public Vector2 tankPosition;
@@ -26,10 +28,12 @@ public class Enemy : MonoBehaviour
 
     public GameObject newEnemyGroup;
 
-    
+    public Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
+        isDead = false;
         refresh = null;
         thiscollider = gameObject.GetComponent<Collider2D>();
         
@@ -45,19 +49,25 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PursuePlayer();
+        if (!isDead)
+        {
+            PursuePlayer();
+        }
     }
 
     private void PursuePlayer()
     {
-        Vector3 direction = tank.position - transform.position;
-        direction.z = tank.position.z;
+        if (tank != null)
+        {
+            Vector3 direction = tank.position - transform.position;
+            direction.z = tank.position.z;
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        transform.rotation = Quaternion.Euler(0, 0, angle - 90.0f);
+            transform.rotation = Quaternion.Euler(0, 0, angle - 90.0f);
 
-        transform.Translate(Vector2.up * 2.0f * Time.deltaTime);
+            transform.Translate(Vector2.up * 2.0f * Time.deltaTime);
+        }
     }
 
     private void UpdateEnemyPosition()
@@ -71,7 +81,11 @@ public class Enemy : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
-        hitsound.Play();
+        if (!isDead)
+        {
+            hitsound.Play();
+        }
+
 
         string gameObjectTag = collider.tag;
 
@@ -88,12 +102,14 @@ public class Enemy : MonoBehaviour
 
             case "CannonBall":
                 score.addToScore();
-                KillEnemy();
+                //KillEnemy();
+                animator.SetBool("IsDead", true);
+                isDead = true;
                 break;
         }
     }
 
-    private void KillEnemy()
+    public void KillEnemy()
     {
         Destroy(gameObject);
     }
