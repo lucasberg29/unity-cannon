@@ -8,7 +8,7 @@ public class Score : MonoBehaviour
 {
     public string scoreTextString;
 
-    private static float score;
+    private static int score;
 
     public TextMeshProUGUI scoreText;
     // Start is called before the first frame update
@@ -27,5 +27,10 @@ public class Score : MonoBehaviour
     {
         score = 0;
         scoreText.text = scoreTextString + " " + score;
+    }
+
+    public int GetScore()
+    {
+        return (int)score;
     }
 }

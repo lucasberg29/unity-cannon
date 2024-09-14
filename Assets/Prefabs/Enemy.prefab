@@ -4913,12 +4913,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56f9200838aabb48b7e14af228d0da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
+  enemyHealth: 1
+  enemySpeed: 2
+  wingFlapSpeed: 1
   tank: {fileID: 2710105865600657888}
   tankPosition: {x: 0, y: 0}
   score: {fileID: 0}
-  thiscollider: {fileID: 2710105865600657894}
-  hitsound: {fileID: 8969371580586944623}
-  refresh: {fileID: 0}
+  hitSound: {fileID: 0}
   collision1: {fileID: 0}
   tankObject: {fileID: 0}
   creator: {fileID: 0}
@@ -4926,6 +4928,7 @@ MonoBehaviour:
     type: 3}
   animator: {fileID: 5105896792635991406}
   particleSystem: {fileID: 6854193891189840777}
+  enemyManager: {fileID: 0}
 --- !u!82 &8969371580586944623
 AudioSource:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MusicManager
   - CannonBall
+  - EnemyManager
   layers:
   - Default
   - TransparentFX

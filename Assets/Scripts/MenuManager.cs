@@ -23,6 +23,8 @@ public class MenuManager : MonoBehaviour
     public Color selectedColor;
     public Color deselectedColor;
 
+    public TextMeshProUGUI highestScoreText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +33,16 @@ public class MenuManager : MonoBehaviour
         regularTextComponent = regularText.GetComponent<TextMeshProUGUI>();
 
         GetDifficulty();
+        UpdateHighestScore();
 
         MusicManager musicManager = MusicManager.Instance;
         musicManager.PlayMenuSong();
+    }
+
+    private void UpdateHighestScore()
+    {
+        int highestScore = PlayerPrefs.GetInt("HighestScore");
+        highestScoreText.text = "Highest score: " + highestScore;
     }
 
     private void GetDifficulty()

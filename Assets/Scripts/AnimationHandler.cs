@@ -6,6 +6,6 @@ public class AnimationHandler : MonoBehaviour
 {
     public void DestroyEnemy()
     {
-        GetComponentInParent<Enemy>().KillEnemy();
+        GetComponentInParent<Enemy>().DestroyEnemy();
     }
 }

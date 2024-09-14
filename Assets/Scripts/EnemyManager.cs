@@ -13,8 +13,11 @@ public class EnemyManager : MonoBehaviour
     public float playerCreationTimeLimit;
     private float playerCreationTimeLimitTimeRemaining;
 
+    private List<GameObject> enemyList; 
+
     void Start()
     {
+        enemyList = new List<GameObject>(); 
         playerCreationTimeLimitTimeRemaining = playerCreationTimeLimit;
     }
 
@@ -34,15 +37,15 @@ public class EnemyManager : MonoBehaviour
 
     }
 
-    private void PursuePlayer(GameObject obj)
-    {
-        Vector3 direction = playerTransform.position - obj.transform.position;
-        direction.z = playerTransform.position.z;
+    //private void PursuePlayer(GameObject obj)
+    //{
+    //    Vector3 direction = playerTransform.position - obj.transform.position;
+    //    direction.z = playerTransform.position.z;
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+    //    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        obj.transform.rotation = Quaternion.Euler(0, 0, angle - 90.0f);
-    }
+    //    obj.transform.rotation = Quaternion.Euler(0, 0, angle - 90.0f);
+    //}
 
     void CreateEnemy(Vector2 position)
     {
@@ -51,7 +54,7 @@ public class EnemyManager : MonoBehaviour
             Vector3 enemyPosition = new Vector3(position.x, position.y, -0.05f);
 
             GameObject enemy = Instantiate(enemyPrefab, enemyPosition, Quaternion.identity, transform);
-            //enemy.transform.SetParent(transform, false);    
+            enemyList.Add(enemy);
         }
     }
 
@@ -63,5 +66,19 @@ public class EnemyManager : MonoBehaviour
         float y = radius * Mathf.Sin(angle);
 
         return new Vector2(x, y);
+    }
+
+    public void KillEnemy(GameObject enemy)
+    {
+        enemy.GetComponent<Enemy>().isDead = true;
+        enemyList.Remove(enemy);
+    }
+
+    public void KillAllEnemies()
+    {
+        foreach (GameObject enemy in enemyList)
+        {
+            enemy.GetComponent<Enemy>().isDead = true;
+        }
     }
 }
