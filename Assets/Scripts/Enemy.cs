@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public bool isDead;
 
     public int enemyHealth;
+    public int enemyPoints;
 
     public float enemySpeed = 1.0f;
     public float wingFlapSpeed = 1.0f;
@@ -102,27 +103,36 @@ public class Enemy : MonoBehaviour
 
                 enemyManager.KillAllEnemies();
 
-
                 tank.position = GameObject.Find("Player").GetComponent<Tank>().getStartingPosition();
 
-                PlayerPrefs.SetInt("HighestScore", score.GetScore());
+                //score.SaveScore();
                 score.ResetScore();
 
                 break;
 
             case "CannonBall":
                 cannonBallHit = collider;
-                EnemyDeath();
+                HurtEnemy(1);
                 break;
+        }
+    }
+
+    public void HurtEnemy(int damage)
+    {
+        particleSystem.Play();
+        enemyHealth = enemyHealth - damage;
+
+        if (enemyHealth <= 0)
+        {
+            EnemyDeath();
         }
     }
 
     private void EnemyDeath()
     {
-        score.addToScore();
+        score.AddToScore(enemyPoints);
         animator.SetBool("IsDead", true);
-        enemyManager.KillEnemy(gameObject);
-        particleSystem.Play();
+        isDead = true;
 
         if (cannonBallHit != null)
         {
@@ -134,9 +144,4 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-    //public Vector2 getStartingPosition()
-    //{
-    //    return startingPosition;
-    //}
 }

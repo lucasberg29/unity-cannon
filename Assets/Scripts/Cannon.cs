@@ -20,7 +20,6 @@ public class Cannon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
         timer = 2.0f;
     }
 
@@ -34,16 +33,16 @@ public class Cannon : MonoBehaviour
         rightTimer += (4.0f * Time.deltaTime);
 
         //left click
-        if (timer >= fireTime && Input.GetMouseButton(0))
-        {
-            gunshot.Play();
-            Instantiate(ball, spawnPoint.position, transform.rotation);
-            timer = 0.0f;
-        }
+        //if (timer >= fireTime && Input.GetMouseButton(0))
+        //{
+        //    gunshot.Play();
+        //    Instantiate(ball, spawnPoint.position, transform.rotation);
+        //    timer = 0.0f;
+        //}
 
         //right click
         int counter = 0;
-        if (rightTimer >= fireTime && Input.GetMouseButton(1))
+        if (rightTimer >= fireTime && Input.GetMouseButton(0))
         {
             ++counter;
             gunshot.Play();

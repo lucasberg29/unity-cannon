@@ -10,10 +10,13 @@ public class Score : MonoBehaviour
 
     private static int score;
 
+    private int currentHighestScore;
+
     public TextMeshProUGUI scoreText;
     // Start is called before the first frame update
     void Start()
     {
+        currentHighestScore = PlayerPrefs.GetInt("HighestScore");
         scoreText.text = scoreTextString;
     }
 
@@ -21,6 +24,24 @@ public class Score : MonoBehaviour
     {
         ++score;
         scoreText.text = scoreTextString + " " + score;
+
+        if (score > currentHighestScore)
+        {
+            currentHighestScore = score;
+            SaveScore();
+        }
+    }
+
+    public void AddToScore(int points)
+    {
+        score += points;
+        scoreText.text = scoreTextString + " " + score;
+
+        if (score > currentHighestScore)
+        {
+            currentHighestScore = score;
+            SaveScore();
+        }
     }
 
     public void ResetScore()
@@ -31,6 +52,11 @@ public class Score : MonoBehaviour
 
     public int GetScore()
     {
-        return (int)score;
+        return score;
+    }
+
+    public void SaveScore()
+    {
+        PlayerPrefs.SetInt("HighestScore", score);
     }
 }

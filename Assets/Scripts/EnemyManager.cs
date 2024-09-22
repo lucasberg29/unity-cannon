@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
     public Transform playerTransform;
+
     public GameObject enemyPrefab;
+    public GameObject alphaEnemyPrefab;
 
     public float playerCreationSpeed;
     public float enemyCreationRadius;
@@ -13,12 +16,16 @@ public class EnemyManager : MonoBehaviour
     public float playerCreationTimeLimit;
     private float playerCreationTimeLimitTimeRemaining;
 
-    private List<GameObject> enemyList; 
+    private List<GameObject> enemyList;
+
+    private string gameDifficulty;
 
     void Start()
     {
         enemyList = new List<GameObject>(); 
         playerCreationTimeLimitTimeRemaining = playerCreationTimeLimit;
+
+        gameDifficulty = PlayerPrefs.GetString("Difficulty");
     }
 
     void Update()
@@ -29,43 +36,41 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
+            playerCreationTimeLimit *= 0.95f;
             playerCreationTimeLimitTimeRemaining = playerCreationTimeLimit;
 
-            Vector2 randomPoint = GetRandomPointOnCircle(enemyCreationRadius);
+            Vector2 randomPoint = MathUtils.GetRandomPointOnCircle(enemyCreationRadius);
             CreateEnemy(randomPoint);
         }
-
     }
-
-    //private void PursuePlayer(GameObject obj)
-    //{
-    //    Vector3 direction = playerTransform.position - obj.transform.position;
-    //    direction.z = playerTransform.position.z;
-
-    //    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-    //    obj.transform.rotation = Quaternion.Euler(0, 0, angle - 90.0f);
-    //}
 
     void CreateEnemy(Vector2 position)
     {
-        if (enemyPrefab != null)
+        Vector3 enemyPosition = new Vector3(position.x, position.y, -0.05f);
+        int randomInt = Random.Range(0, 10);
+
+        GameObject enemy = new GameObject();
+
+        switch (gameDifficulty)
         {
-            Vector3 enemyPosition = new Vector3(position.x, position.y, -0.05f);
+            case "Easy":
+                enemy = Instantiate(enemyPrefab, enemyPosition, Quaternion.identity, transform);
+                enemyList.Add(enemy);
+                break;
 
-            GameObject enemy = Instantiate(enemyPrefab, enemyPosition, Quaternion.identity, transform);
-            enemyList.Add(enemy);
+            case "Regular":
+                if (randomInt < 3)
+                {
+                    enemy = Instantiate(alphaEnemyPrefab, enemyPosition, Quaternion.identity, transform);
+                    enemyList.Add(enemy);
+                }
+                else
+                {
+                    enemy = Instantiate(enemyPrefab, enemyPosition, Quaternion.identity, transform);
+                    enemyList.Add(enemy);
+                }
+                break;
         }
-    }
-
-    Vector2 GetRandomPointOnCircle(float radius)
-    {
-        float angle = Random.Range(0f, 2f * Mathf.PI);
-
-        float x = radius * Mathf.Cos(angle);
-        float y = radius * Mathf.Sin(angle);
-
-        return new Vector2(x, y);
     }
 
     public void KillEnemy(GameObject enemy)
@@ -76,9 +81,12 @@ public class EnemyManager : MonoBehaviour
 
     public void KillAllEnemies()
     {
-        foreach (GameObject enemy in enemyList)
+        foreach (GameObject enemyGameObject in enemyList)
         {
-            enemy.GetComponent<Enemy>().isDead = true;
+            if (enemyGameObject != null)
+            {
+                enemyGameObject.GetComponent<Enemy>().HurtEnemy(10);
+            }
         }
     }
 }

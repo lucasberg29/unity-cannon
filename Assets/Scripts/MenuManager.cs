@@ -36,6 +36,7 @@ public class MenuManager : MonoBehaviour
         UpdateHighestScore();
 
         MusicManager musicManager = MusicManager.Instance;
+
         musicManager.PlayMenuSong();
     }
 

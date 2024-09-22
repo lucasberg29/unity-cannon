@@ -4915,6 +4915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDead: 0
   enemyHealth: 1
+  enemyPoints: 1
   enemySpeed: 2
   wingFlapSpeed: 1
   tank: {fileID: 2710105865600657888}
@@ -4928,7 +4929,6 @@ MonoBehaviour:
     type: 3}
   animator: {fileID: 5105896792635991406}
   particleSystem: {fileID: 6854193891189840777}
-  enemyManager: {fileID: 0}
 --- !u!82 &8969371580586944623
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4941,7 +4941,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a3247be552b24664094e4e0885f4afa1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.07
   m_Pitch: 1
   Loop: 0
   Mute: 0

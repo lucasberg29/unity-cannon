@@ -10,6 +10,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2710105865600657888, guid: 30ce4f1fe0b69fd4c989f74160139559,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2710105865600657888, guid: 30ce4f1fe0b69fd4c989f74160139559,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2710105865600657888, guid: 30ce4f1fe0b69fd4c989f74160139559,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -68,6 +78,11 @@ PrefabInstance:
       propertyPath: enemyHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2710105865600657891, guid: 30ce4f1fe0b69fd4c989f74160139559,
+        type: 3}
+      propertyPath: enemyPoints
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2710105865600657892, guid: 30ce4f1fe0b69fd4c989f74160139559,
         type: 3}
       propertyPath: m_Name
@@ -76,22 +91,22 @@ PrefabInstance:
     - target: {fileID: 2710105865600657894, guid: 30ce4f1fe0b69fd4c989f74160139559,
         type: 3}
       propertyPath: m_Radius
-      value: 1.0020981
+      value: 0.4941886
       objectReference: {fileID: 0}
     - target: {fileID: 2710105865600657894, guid: 30ce4f1fe0b69fd4c989f74160139559,
         type: 3}
       propertyPath: m_Offset.y
-      value: 0.009357691
+      value: -0.06545086
       objectReference: {fileID: 0}
     - target: {fileID: 3171532842914706716, guid: 30ce4f1fe0b69fd4c989f74160139559,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3171532842914706716, guid: 30ce4f1fe0b69fd4c989f74160139559,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3171532842914706716, guid: 30ce4f1fe0b69fd4c989f74160139559,
         type: 3}

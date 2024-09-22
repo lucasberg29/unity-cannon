@@ -38,11 +38,14 @@ public class MusicManager : MonoBehaviour
 
     public void PlayMenuSong()
     {
-        if (currentSong.name != "MenuBackground")
+        if (currentSong != null)
         {
-            currentSong = allSongs.Find(song => song.name == "MenuBackground");
-            audioSource.clip = currentSong;
-            audioSource.Play();
+            if (currentSong.name != "MenuBackground")
+            {
+                currentSong = allSongs.Find(song => song.name == "MenuBackground");
+                audioSource.clip = currentSong;
+                audioSource.Play();
+            }
         }
     }
 
