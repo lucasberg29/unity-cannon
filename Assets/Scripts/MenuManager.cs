@@ -54,7 +54,7 @@ public class MenuManager : MonoBehaviour
         {
             PlayerPrefs.SetString("Difficulty", "Easy");
             easyButton.Select();
-            difficultyTextComponent.text = "Regular enemies";
+            difficultyTextComponent.text = "Easy enemies";
             SetAllColorsToSelected(easyButton, true);
             SetAllColorsToSelected(regularButton, false);
         }
@@ -64,7 +64,7 @@ public class MenuManager : MonoBehaviour
             {
                 case "Easy":
                     easyButton.Select();
-                    difficultyTextComponent.text = "Regular enemies";
+                    difficultyTextComponent.text = "Easy enemies";
                     PlayerPrefs.SetString("Difficulty", "Easy");
                     SetAllColorsToSelected(easyButton, true);
                     SetAllColorsToSelected(regularButton, false);
@@ -72,7 +72,7 @@ public class MenuManager : MonoBehaviour
                     break;
                 case "Regular":
                     regularButton.Select();
-                    difficultyTextComponent.text = "Regular and stronger enemies!";
+                    difficultyTextComponent.text = "Easy and stronger enemies!";
                     PlayerPrefs.SetString("Difficulty", "Regular");
                     SetAllColorsToSelected(easyButton, false);
                     SetAllColorsToSelected(regularButton, true);
@@ -96,13 +96,13 @@ public class MenuManager : MonoBehaviour
             switch (difficulty)
             {
                 case "Easy":
-                    difficultyTextComponent.text = "Regular enemies";
+                    difficultyTextComponent.text = "Easy enemies";
                     SetAllColorsToSelected(easyButton, true);
                     SetAllColorsToSelected(regularButton, false);
 
                     break;
                 case "Regular":
-                    difficultyTextComponent.text = "Regular and stronger enemies!";
+                    difficultyTextComponent.text = "Easy and stronger enemies!";
                     SetAllColorsToSelected(easyButton, false);
                     SetAllColorsToSelected(regularButton, true);
 
